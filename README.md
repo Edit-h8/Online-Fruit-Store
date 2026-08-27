@@ -6,63 +6,46 @@ A full-featured online fruit store web application built with Django.
 
 ### 🔐 Authentication & Account Management
 
-* User registration, login, and logout
-* Email verification
-* Password reset
-* Add and remove email addresses
-* Set a primary email address
-* Password change
-* User-specific account management
+- User registration, login, and logout
+- Email verification
+- Password reset
+- Add and remove email addresses
+- Set primary email address
 
-### 🛍️ Shopping Experience
+### 🛒 Shopping & Orders
 
-* Dynamic product listing
-* Product filtering
-* Dynamic home page
-* Shopping cart
-* Add and remove cart items
-* Update product quantities
-* Stock management
-* Pagination
+- Product browsing
+- Shopping cart
+- Order creation and management
+- Order status handling
+- Order expiration
+- Pagination
 
-### 📦 Order Management
+### 🛡️ Security & Forms
 
-* Create and manage orders
-* User-specific order history
-* Order timestamps
-* Order cancellation
-* Payment status management
-* Protected order and payment pages
+- CSRF protection
+- CAPTCHA-protected contact form
+- Server-side form validation
+- Django authentication and authorization
 
-### ⚙️ Django Features
+### 🎨 UI & Templates
 
-* Django ORM
-* Database relationships
-* Django Admin
-* Authentication decorators
-* Django Messages Framework
-* Static and media files
-* Django Template System
-* Built-in `humanize` template tags
-* Custom template tags
-
-### 🎨 UI & Design
-
-* Custom CSS design
-* Dynamic content rendering
-* Custom-designed pages and components
+- Custom responsive CSS
+- Dynamic homepage using Django Template Tags
+- Custom Template Tags
+- Custom authentication pages
+- User profile and account management pages
 
 ## 🛠️ Technologies
 
-* Python
-* Django
-* Django Allauth
-* HTML5
-* CSS3
-* SQLite
-* Django Templates
-* Django ORM
-
+- Python
+- Django
+- Django Allauth
+- Django Simple CAPTCHA
+- HTML5
+- CSS3
+- JavaScript
+- SQLite
 
 ## 🚀 Installation
 
