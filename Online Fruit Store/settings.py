@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',    
     'Website',
     'Shop_app',
-    'News_app'
+    'News_app',
+    'captcha'
 ]
 
 MIDDLEWARE = [

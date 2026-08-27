@@ -25,6 +25,7 @@ urlpatterns = [
     path("shop/" , include("Shop_app.urls")),
     path("news/" , include("News_app.urls")),
     path('accounts/', include('allauth.urls')),
+    path('captcha/', include('captcha.urls')),
 ]
 
 

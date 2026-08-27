@@ -12,7 +12,8 @@ def index_page(request):
     new = paginator.get_page(page_num)
 
     contact = {
-        "news" : new}
+        "news" : new
+        }
     return render(request , "news/news.html" , contact)
 
 def single_page(request , pid):
