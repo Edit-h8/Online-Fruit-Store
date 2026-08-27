@@ -69,7 +69,7 @@ A full-featured online fruit store web application built with Django.
 Clone the repository:
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Edit-h8/Online-Fruit-Store.git
 cd Online-Fruit-Store
 ```
 
