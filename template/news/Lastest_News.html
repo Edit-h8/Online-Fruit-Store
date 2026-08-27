@@ -1,0 +1,16 @@
+
+
+<div class="recent-posts">
+  <h4>Recent Post</h4>
+  <ul>
+
+    {% for new in news %}
+    <li>
+      <a href="{% url 'news:single' pid=new.id %}"
+      >{{new.title}}</a
+      >
+    </li>
+    {% endfor %}
+
+  </ul>
+</div>

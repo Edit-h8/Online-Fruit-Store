@@ -1,0 +1,110 @@
+{% extends "account/bace_page.html" %}
+
+{%block Signup%}
+    <li class="current-list-item"><a href="{% url 'account_signup' %}">Sign up</a></li>
+{% endblock Signup%}
+
+
+{% block body %}
+
+<style>
+    .ul{
+        color: white;
+        font-size:15px;
+    }
+    .ul li{
+        margin: 15px;
+    }
+</style>
+<h1 class="auth-title">Welcome at Sign Up</h1>
+
+        <p class="auth-subtitle">
+            Enter you info for Sign Up 
+        </p>
+
+        <form method="POST" action="{% url  'account_signup' %}">
+
+           
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label for="username">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    value="{{ form.login.value|default:'' }}"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="username">Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    value="{{ form.login.value|default:'' }}"
+                    required
+                >
+            </div>
+
+
+            <div class="input-group">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password1"
+                    placeholder="Enter your new password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+            <div class="input-group">
+                <label for="password">Password (again)</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password2"
+                    placeholder="Enter your nwe password (again)"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+
+            <div class="options">
+                <ul class="ul">
+                    <li>Your password can’t be entirely numeric.</li>
+                    <li>Your password can’t be a commonly used password.</li>
+                    <li>Your password must contain at least 8 characters.</li>
+                    <li>Your password can’t be too similar to your other personal information.</li>
+                </ul>
+
+            </div>
+
+
+            <button type="submit" class="login-btn">
+                Sign Up
+            </button>
+
+        </form>
+
+
+        <p class="register-text">
+            Do you have an account?
+            <a href="{% url 'account_login' %}">
+                Log in
+            </a>
+        </p>
+
+        {% endblock body %}

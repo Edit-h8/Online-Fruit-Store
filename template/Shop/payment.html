@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paye page</title>
+    <style>
+        .timer {
+            position: absolute;
+            left: 45%;
+        }
+        .btn{
+            padding: 20px;
+            margin-inline: 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #27a0e6 ;
+            color: white;
+            transition: ease;
+            transition: 0.3s;
+        }
+        
+        .btn:hover{
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        
+        body{
+            background:gray;
+            color:white;
+        }
+       header{
+        margin-bottom:10%;
+       }
+       header span{
+        color: #ac3535;
+        font-size:2.5rem;
+        margin: 1rem;
+       }
+    </style>
+</head>
+<body>
+    <center>
+        <header>
+            <h2>Welcome at <span>pay</span> page</h2>
+        </header>
+
+        <h1>Your Price Total For Pay is ${{order.total_price}}</h1>
+        
+
+        <form method="post">
+            {% csrf_token %}
+
+            <button class="btn" name="pay" value="pay" type="submit">Pay</button>
+            <button class="btn" name="cancel" value="cancel"  type="submit">Cancel</button>
+        </form>
+    </center>
+
+   <p class="timer">
+    Time remaining:
+    <span id="timer">Loading...</span>
+</p>
+
+<script>
+    const expireTime = new Date(
+        "{{ order.expires_at|date:'c' }}"
+    ).getTime();
+
+    const timer = document.getElementById("timer");
+
+    const countdown = setInterval(function () {
+
+        const now = new Date().getTime();
+
+        const distance = expireTime - now;
+
+        if (distance <= 0) {
+
+            clearInterval(countdown);
+
+            timer.innerText = "Expired";
+
+            return;
+        }
+
+        const minutes = Math.floor(
+            distance / (1000 * 60)
+        );
+
+        const seconds = Math.floor(
+            (distance % (1000 * 60)) / 1000
+        );
+
+        timer.innerText =
+            `${minutes}:${seconds.toString().padStart(2, "0")}`;
+
+    }, 1000);
+</script>
+
+</body>
+</html>

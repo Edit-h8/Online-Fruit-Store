@@ -1,0 +1,68 @@
+{% extends "account/bace_page.html" %}
+{% load static %}
+
+{% block titel %}
+<title>Profile</title>
+{% endblock titel %}
+
+
+{%block Prof%}
+    <li>
+        <div class="header-icons">
+            <a class="mobile-hide" href="{% url 'website:profile'%}"><i style="color: #F28123;" class=" fas fa-user"></i></a>
+        </div>
+    </li>
+{% endblock Prof%}
+
+
+
+{% block body %} 
+<style>
+    .list-pro{
+        color: white;
+        display: block;
+        text-align: center;
+        margin-top:30px;
+        font-size: 19px;
+    }
+
+
+    .list-log a:hover{
+        color: orange;
+    }
+    
+    .list-log{
+        margin: 20px 0;
+        font-size: 25px;
+    }
+
+</style>
+
+    <!--start profile-->
+
+            <div>
+                <img style="margin: 20px 30px;filter:brightness(0) invert(1);max-width:250px" src="{% static 'assets/img/Profile/Profile.png' %}" alt=""> 
+            </div>
+            
+            <!--Show username OR name-->
+            <h1 class="auth-title">
+                Hello 
+                {% if user.first_name %}
+                {{user.first_name}}
+                {% else %}
+                {{user}}
+                {% endif %} 
+            </h1>
+
+            <p class="auth-subtitle">
+                This is you , Welcome At yourSelf Page
+            </p>
+            
+            <hr>
+        
+                <a class="list-pro" href="{% url 'website:Change_info' %}">chang your info</a></li>
+            
+  
+    <!--end profile-->
+     
+{% endblock body %}

@@ -1,0 +1,23 @@
+{% extends "account/bace_page.html" %}
+
+{% block body %}
+<h1 class="auth-title">Log out</h1>
+
+        <p class="auth-subtitle">
+            Are you sure you want to Log out ?
+        </p>
+
+        <form method="POST" action="{% url  'account_logout' %}">
+
+           
+            {% csrf_token %}
+
+
+            <button type="submit" class="login-btn">
+                Log out
+            </button>
+
+        </form>
+
+
+{% endblock body %}

@@ -1,0 +1,8 @@
+<div class="archive-posts">
+  <h4>Archive Posts</h4>
+  <ul>
+    {% for new in news %}
+        <li><a href="{{new.id}}">{{new.created_date|date:"j M Y  (P)"}}</a></li>
+    {% endfor %}
+  </ul>
+</div>

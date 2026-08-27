@@ -1,0 +1,20 @@
+{% load static %}
+{%load humanize %}
+
+{% for new in news %}
+<div class="col-lg-4 col-md-6">
+	<div class="single-latest-news">
+		<a href="{% url 'news:single' pid=new.id %}"><img class="latest-news-bg" src="{{new.image.url}}" alt=""></a>
+		<div class="news-text-box">
+			<h3><a href="{% url 'news:single' pid=new.id %}">{{new}}</a></h3>
+			<p class="blog-meta">
+				<span class="author"><i class="fas fa-user"></i>{{new.aother}}</span>
+				<span class="date"><i class="fas fa-calendar"></i>{{new.created_date|naturaltime}}</span>
+			</p>
+			<p class="excerpt">{{new.description|truncatewords:'10'}}</p>
+			<a href="{% url 'news:single' pid=new.id %}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+		</div>
+	</div>
+</div>
+
+{% endfor %}

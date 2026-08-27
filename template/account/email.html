@@ -1,0 +1,152 @@
+{% extends "account/bace_page.html" %}
+
+
+{%block Email%}
+    <li class="current-list-item" ><a href="{% url 'account_email' %}">Email Manage</a></li>
+{% endblock Email%}
+
+{% block body %}
+<style>
+    .email-row .verified {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-left: 8px;
+
+    color: #42d392;
+
+    font-size: 12px;
+}
+    .butten{
+        display: flex;
+        gap: 10px;
+        margin: 16px 0;
+    }
+
+    .email-row{
+        padding: 30px;
+        color: white;
+    }
+
+    .email-row span{
+        color: rgb(92, 152, 167);
+        font-size: 14px;
+    }
+
+    .email-row .not{
+        color: rgb(207, 70, 70);
+    }
+
+    .email-row .primary{
+        color: chartreuse;
+        font-size: 16px;
+    }
+
+</style>
+<h1 class="auth-title">Email Addresses</h1>
+
+{% if emailaddresses %}
+
+
+<p class="auth-subtitle">
+            The following email addresses are associated with your account:
+        </p>
+
+<form method="post" action="{% url 'account_email' %}">
+    {% csrf_token %}
+
+
+    {% for emailaddress in emailaddresses %}
+
+        <div class="email-row">
+
+            <input
+                type="radio"
+                name="email"
+                value="{{ emailaddress.email }}"
+                id="email_{{ forloop.counter }}"
+            >
+
+            <label for="email_{{ forloop.counter }}">
+                {{ emailaddress.email }}
+
+                {% if emailaddress.primary %}
+                    <span class="primary">Primary</span>
+                {% endif %}
+
+                {% if emailaddress.verified %}
+                    <span class="verified">
+                        <i class="fas fa-check-circle"></i>
+                        Verified
+                    </span>
+                {% else %}
+                    <br>
+                    <span class="not">Not verified</span>
+                {% endif %}
+            </label>
+
+        </div>
+
+    {% endfor %}
+    
+
+    <div class="butten">
+        <button type="submit" class="login-btn" name="action_remove">
+            Remove
+        </button>
+        
+        <button type="submit" class="login-btn" name="action_send">
+            Re-send verification
+        </button>
+        
+        <button type="submit" class="login-btn" name="action_primary">
+            Make primary
+        </button>
+    </div>
+    {% else %}
+
+    <p class="auth-subtitle">
+        Please Add an email . for you don't set any email !
+    </p>
+
+    {% endif %}
+
+</form>
+
+<hr>
+<br><br>
+
+<h1 class="auth-title">Add Email Addresses</h1>
+
+
+<br>
+
+
+<form method="POST" action="{% url  'account_email' %}">
+
+           
+    {% csrf_token %}
+    <div class="input-group">
+        <label for="email">email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your Email Addres"
+            autocomplete="email"
+            value="{{ form.login.value|default:'' }}"
+            required
+        >
+    </div>
+    <button type="submit" name="action_add" class="login-btn">
+        Add Email
+    </button>
+
+</form>
+
+
+
+{% endblock body %}

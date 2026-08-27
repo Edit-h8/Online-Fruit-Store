@@ -1,0 +1,16 @@
+{% load static %}
+
+{% for pro in Product %}
+
+<div class="col-lg-4 col-md-6 text-center">
+	<div class="single-product-item">
+		<div class="product-image">
+			<a href="single-product.html"><img src="{{pro.image.url}}" alt=""></a>
+		</div>
+		<h3>{{product.name}}</h3>
+		<p class="product-price"><span>Per Kg</span> {{pro.price}}$ </p>
+		<a href="{% url 'shop:add_cart' pr_id=pro.id %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+	</div>
+</div>
+
+{% endfor %}

@@ -1,0 +1,19 @@
+{% extends "bace_page.html" %}
+{% load static %}
+
+{% block titel %}
+<title>Cancel</title>
+{% endblock titel %}
+
+{% block menu_current %}
+  <li><a href="{% url 'website:index' %}">Home</a></li>
+  <li><a href="{% url  'website:about' %}">About</a></li>
+  <li><a href="{% url 'news:index' %}">News</a></li>
+  <li><a href="{% url  'website:contact' %}">Contact</a></li>
+  <li><a href="{% url 'shop:index' %}">Shop</a></li>
+{% endblock menu_current %}
+
+
+{% block body %}
+
+{% endblock body %}

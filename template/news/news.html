@@ -1,0 +1,136 @@
+{% extends "bace_page.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block titel %}
+<title>News</title>
+{% endblock titel %}
+
+{% block menu_current %}
+  <li ><a href="{% url 'website:index' %}">Home</a></li>
+  <li><a href="{% url  'website:about' %}">About</a></li>
+  <li class="current-list-item"><a href="{% url 'news:index' %}">News</a></li>
+  <li><a href="{% url  'website:contact' %}">Contact</a></li>
+  <li><a href="{% url 'shop:index' %}">Shop</a></li>
+{% endblock menu_current %}
+
+
+	{% block body %}
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa -->
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Organic Information</p>
+						<h1>News Article</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- latest news -->
+	<div class="latest-news mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				{% for new in news %}
+				<div class="col-lg-4 col-md-6">
+					<div class="single-latest-news">
+						<a href="{% url 'news:single' pid=new.id %}"><img class="latest-news-bg" src="{{new.image.url}}" alt=""></a>
+						<div class="news-text-box">
+							<h3><a href="{% url 'news:single' pid=new.id %}">{{new}}</a></h3>
+							<p class="blog-meta">
+								<span class="author"><i class="fas fa-user"></i>{{new.aother}}</span>
+								<span class="date"><i class="fas fa-calendar"></i>{{new.created_date|naturaltime}}</span>
+							</p>
+							<p class="excerpt">{{new.description|truncatewords:'10'}}</p>
+							<a href="{% url 'news:single' pid=new.id %}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+
+			<div class="row">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 text-center">
+							<div class="pagination-wrap">
+								<ul>
+									{% if news.has_previous %}
+											<li><a href="?page={{ news.previous_page_number }}">Prev</a></li>
+									{% endif %}
+
+									{% for num in news.paginator.page_range %}
+
+									    {% if news.number == num %}
+										<li><a class="active" href="?page={{ num }}">{{num}}</a></li>
+									    {% else %}
+									        <li><a href="?page={{ num }}">{{ num }}</a></li>
+									    {% endif %}
+
+									{% endfor %}
+
+									{% if news.has_next %}
+											<li><a href="?page={{ news.next_page_number }}">Next</a></li>
+									{% endif %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end latest news -->
+
+	<!-- logo carousel -->
+	<div class="logo-carousel-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="logo-carousel-inner">
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/1.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/2.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/3.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/4.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/5.png' %}" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end logo carousel -->
+
+	{% endblock body %}

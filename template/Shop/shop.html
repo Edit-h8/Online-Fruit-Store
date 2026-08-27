@@ -1,0 +1,141 @@
+{% extends "bace_page.html" %}
+{% load static %}
+
+{% block titel %}
+<title>Shop</title>
+{% endblock titel %}
+
+{% block menu_current %}
+  <li><a href="{% url 'website:index' %}">Home</a></li>
+  <li><a href="{% url  'website:about' %}">About</a></li>
+  <li><a href="{% url 'news:index' %}">News</a></li>
+  <li><a href="{% url  'website:contact' %}">Contact</a></li>
+  <li class="current-list-item"><a href="{% url 'shop:index' %}">Shop</a></li>
+{% endblock menu_current %}
+
+	{% block body %}
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa -->
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Fresh and Organic</p>
+						<h1>Shop</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- products -->
+	<div class="product-section mt-150 mb-150">
+		<div class="container">
+
+			<div class="row">
+                <div class="col-md-12">
+                    <div class="product-filters">
+                        <ul>
+                            <li class="active" data-filter="*">All</li>
+							{% for name in name_product %}
+                            <li data-filter=".{{name.name}}">{{name.name}}</li>
+							{% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+			<div class="row product-lists">
+				{% for product in pruduc_pagi %}
+					<div class="col-lg-4 col-md-6 text-center {{product.name}}">
+						<div class="single-product-item">
+							<div class="product-image">
+								<a href="single-product.html"><img src="{{product.image.url}}" alt=""></a>
+							</div>
+							<h3>{{product.name}}</h3>
+							<p class="product-price"><span>Per Kg</span> {{product.price}}$ </p>
+							<a href="{% url 'shop:add_cart' pr_id=product.id %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			</div>
+	
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="pagination-wrap">
+						<ul>
+							{% if pruduc_pagi.has_previous %}
+									<li><a href="?page={{ pruduc_pagi.previous_page_number }}">Prev</a></li>
+							{% endif %}
+							
+							{% for num in pruduc_pagi.paginator.page_range %}
+
+							    {% if pruduc_pagi.number == num %}
+								<li><a class="active" href="?page={{ num }}">{{num}}</a></li>
+							    {% else %}
+							        <li><a href="?page={{ num }}">{{ num }}</a></li>
+							    {% endif %}
+
+							{% endfor %}
+							
+							{% if pruduc_pagi.has_next %}
+									<li><a href="?page={{ pruduc_pagi.next_page_number }}">Next</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end products -->
+
+	<!-- logo carousel -->
+	<div class="logo-carousel-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="logo-carousel-inner">
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/1.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/2.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/3.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/4.png' %}" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="{% static 'assets/img/company-logos/5.png' %}" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end logo carousel -->
+
+	{% endblock body %}

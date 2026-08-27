@@ -1,0 +1,76 @@
+{% extends "account/bace_page.html" %}
+
+{%block Login%}
+    <li class="current-list-item"><a href="{% url 'account_login' %}">Login</a></li>
+{% endblock Login%}
+
+
+{% block body %}
+<h1 class="auth-title">Welcome Back</h1>
+
+        <p class="auth-subtitle">
+            Login to your account
+        </p>
+
+        <form method="POST" action="{% url  'account_login' %}">
+
+           
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label for="username">Username</label>
+
+                <input
+                    type="text"
+                    id="username"name="login"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    value="{{ form.login.value|default:'' }}"
+                    required
+                >
+            </div>
+
+
+            <div class="input-group">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+
+            <div class="options">
+
+                <label class="remember">
+                    <input type="checkbox" name="remember">
+                    Remember me
+                </label>
+
+                <a href="{% url 'account_reset_password' %}" class="forgot">
+                    Forgot password?
+                </a>
+
+            </div>
+
+
+            <button type="submit" class="login-btn">
+                Log in
+            </button>
+
+        </form>
+
+
+        <p class="register-text">
+            Don't have an account?
+            <a href="{% url 'account_signup' %}">
+                Create account
+            </a>
+        </p>
+
+        {% endblock body %}

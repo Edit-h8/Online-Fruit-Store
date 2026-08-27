@@ -1,0 +1,129 @@
+{% extends "bace_page.html" %}
+
+{% load static %}
+{% load humanize %}
+{% load News_tag %}
+
+
+{% block titel %}
+<title>single news</title>
+{% endblock titel %}
+
+{% block menu_current %}
+  <li><a href="{% url 'website:index' %}">Home</a></li>
+  <li><a href="{% url  'website:about' %}">About</a></li>
+  <li class="current-list-item"><a href="{% url 'news:index' %}">News</a></li>
+  <li><a href="{% url  'website:contact' %}">Contact</a></li>
+  <li><a href="{% url 'shop:index' %}">Shop</a></li>
+{% endblock menu_current %}
+
+	{% block body %}
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa -->
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Read the Details</p>
+						<h1>Single Article</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+	
+	<!-- single article section -->
+	<div class="mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="single-article-section">
+						<div class="single-article-text">
+							{% for new in news %}
+							<img class="single-artcile-bg" src="{{new.image.url}}">
+							<p class="blog-meta">
+								<span class="author"><i class="fas fa-user"></i>{{new.aother}}</span>
+								<span class="date"><i class="fas fa-calendar"></i>{{new.created_date|naturaltime}}</span>
+							</p>
+							
+							<h2>{{new}}</h2>
+							<p>{{new.description}}</p>
+							</div>
+						{% endfor %}
+						
+						
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="sidebar-section">
+						
+						{% Lastest_News %}
+
+						{% Archived_Post %}
+
+						<div class="tag-section">
+							<h4>Tags</h4>
+							<ul>
+								{% for new in news %}
+									{% for tag in new.tag.all %}
+										<li><a href="single-news.html">{{tag}}</a></li>
+									{% endfor %}
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end single article section -->
+
+	<!-- logo carousel -->
+	<div class="logo-carousel-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="logo-carousel-inner">
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/1.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/2.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/3.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/4.png" alt="">
+						</div>
+						<div class="single-logo-item">
+							<img src="assets/img/company-logos/5.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end logo carousel -->
+
+{% endblock body %}
